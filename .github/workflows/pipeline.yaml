@@ -25,10 +25,10 @@ jobs:
           aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 244530008913.dkr.ecr.eu-west-1.amazonaws.com
           rev=$(git rev-parse --short HEAD)
           docker build . -t hello
-          docker tag hello 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023:$rev
-          docker tag hello 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023:latest
-          docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023:$rev
-          docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023:latest
+          docker tag hello 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023-private:$rev
+          docker tag hello 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023-private:latest
+          docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023-private:$rev
+          docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023-private:latest
 
   terraform:
     name: "Terraform"
@@ -38,7 +38,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: eu-west-1
-      IMAGE: 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023:latest
+      IMAGE: 244530008913.dkr.ecr.eu-west-1.amazonaws.com/daha023-private:latest
       PREFIX: daha023
  #    TF_LOG: trace
     steps:
